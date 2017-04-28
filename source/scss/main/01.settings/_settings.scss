@@ -1,0 +1,33 @@
+// 01-Settings: core-variables
+
+$s-core__font-size: 16px !default;
+$s-color-primary: #247ba0 !default;
+
+$s-breakpoints: (
+	"xs": 480px,
+	"md": 960px,
+	"lg": 1280px
+) !default;
+
+
+$s-colors-brand: (
+	first: #ec1b2d,
+	second: #f9eb2d,
+	third: #ec1b2d,
+) !default;
+
+$s-spaces: (
+	small: 15px,
+	medium: 30px,
+	large: 60px,
+) !default;
+
+// 01-Settings: core-functions
+
+@function s-strip-units($value) {
+	@return $value / ($value * 0 + 1);
+}
+
+@function s-px-to-rem($value, $root-font-size: $s-core__font-size) {
+	@return s-strip-units($value) / s-strip-units($root-font-size) * 1rem;
+}

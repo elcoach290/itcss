@@ -1,0 +1,78 @@
+
+// 7. Utilities
+
+// no hacer overuse de utilidades
+
+// son excepciones para los que no saben de coherencia
+
+/* -------------------------------------------------------------------------
+ * MARGINS
+ */
+
+$u-margins-enabled:                     true !default;
+$u-margins-spaces:                      $s-spaces !default;
+
+@if ($u-margins-enabled) {
+  @each $space-name, $space-value in $u-margins-spaces {
+    .u-mb--#{$space-name} {
+      margin-bottom: $space-value !important;
+    }
+  }
+}
+
+
+.u-visible{
+	&\@md{
+		display: block;
+	}
+	&\@lg{
+		display: block;	
+	}
+	&\@xl{
+		display: block;	
+	}
+}
+
+.u-align{
+	&-left{
+		text-align: left !important;
+	}
+	&-center{
+		text-align: center !important;
+	}
+	&-right{
+		text-align: right !important;
+	}
+}
+
+@each $name, $color in $s-colors-brand {
+	.u-color-#{$name} {
+		color: $color !important;
+	}
+}
+
+
+//$u-widths-fractions: 2 3 4 !default;
+
+// @each $denominator in $u-widths-fractions {
+//   @for $numerator from 1 through $denominator{
+//     .u-#{$numerator}\/#{$denominator} {
+//       width: ($numerator / $denominator) * 100% !important;
+//     }
+//   }
+// }
+
+$u-widths-fractions: 1 2 3 4 5!default;
+
+
+@each $bp-name, $bp-value in $s-breakpoints {
+	@include t-mq-min($bp-name) {
+		@each $denominator in $u-widths-fractions {
+		  @for $numerator from 1 through $denominator{
+		    .u-#{$numerator}\/#{$denominator}\@#{$bp-name} {
+		      width: ($numerator / $denominator) * 100% !important;
+		    }
+		  }
+		}
+	}
+}

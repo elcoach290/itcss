@@ -1,0 +1,7 @@
+// 02-Tools: MQ
+
+@mixin t-mq-min($breakpoint) {
+	@media (min-width: map-get($s-breakpoints, $breakpoint)) {
+		@content;
+	}
+}

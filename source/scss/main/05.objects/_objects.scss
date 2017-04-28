@@ -1,0 +1,85 @@
+// 05-Objects
+
+.o-box{
+	display: block;
+	padding: map-get($s-spaces, "medium");
+
+	> :last-child {
+		margin-bottom: 0;
+	}
+}
+
+
+.o-media{
+	display: block;
+	&__img{
+		float: left;
+		margin-right: map-get($s-spaces, "medium");
+
+		> img { display: block; }
+	}
+	&__body{
+		overflow: hidden;
+		display: block;
+		& > :last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.o-container{
+	max-width: 1200px;
+	padding: 0 30px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+.o-pack{
+	width: 100%;
+	margin-left: 0;
+	display: table;
+	table-layout: fixed;
+	border-spacing: map-get($s-spaces, "medium");
+
+	&__item {
+		display: table-cell;
+		vertical-align: top;
+	}
+}
+
+// objeto layout sustituye cual tipo de grid
+// son transparentes no hay bordes ni colores ni nada
+
+.o-layout {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0;
+	padding: 0;
+	margin-left: -(map-get($s-spaces, "medium"));
+	&__item {
+		box-sizing: border-box;
+		display: inline-block;
+		vertical-align: top;
+		width: 100%;
+		padding-left: map-get($s-spaces, "medium");
+	}
+}
+
+$o-layout-enabled:	true !default;
+$o-layout__spaces: map_remove($s-spaces, "large", "huge") !default;
+$o-layout__spaces--default: "medium" !default;
+$o-layout__spaces--enable: true !default;
+
+@if ($o-layout-enabled and $o-layout__spaces--enable) {
+	@each $space-name, $space-value in $o-layout__spaces {
+		@if ($space-name != $o-layout__spaces--default) {
+			.o-layout--space-#{$space-name} {
+				margin-left: -$space-value;
+				> .o-layout__item {
+					padding-left: $space-value;
+				}
+			}
+		}
+	}
+}

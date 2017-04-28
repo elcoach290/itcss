@@ -1,0 +1,17 @@
+// 8. SCOPES
+
+.s-wysinwyg{
+	h1, h2, h3, h4, h5,  h6{
+		font-size: $s-core__font-size;
+	}
+	ul, ol{
+		//margin-left: $s-space;
+	}
+	br + br {
+		display: none;
+	}
+	[style]:after {
+		content: "¡NI SE TE OCURRAN ESTILOS EN LINEA ";
+		color: red;
+	}
+}
